@@ -28,3 +28,6 @@ coverage/
 
 # Vite cache
 .vite/
+
+# Project diagrams/images to keep local
+Architecture.png
