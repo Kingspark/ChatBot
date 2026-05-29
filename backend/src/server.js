@@ -1,10 +1,22 @@
 const app = require('./app');
 const env = require('./config/env');
 const { ensureSchema, pool } = require('./config/database');
+const { runMigrations } = require('../scripts/migrationRunner');
 
 // Bootstraps DB schema then starts HTTP server.
 const startServer = async () => {
   try {
+    if (env.runMigrationsOnBoot) {
+      await runMigrations({
+        host: env.mysqlHost,
+        port: env.mysqlPort,
+        user: env.mysqlUser,
+        password: env.mysqlPassword,
+        database: env.mysqlDatabase,
+      });
+      console.log('Database migrations applied on startup.');
+    }
+
     await ensureSchema();
 
     app.listen(env.port, () => {

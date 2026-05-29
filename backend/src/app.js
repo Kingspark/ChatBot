@@ -6,10 +6,15 @@ const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
+const corsOrigins = env.corsOrigin
+  .split(',')
+  .map(origin => origin.trim())
+  .filter(Boolean);
+
 // Global middleware for CORS and JSON parsing.
 app.use(
   cors({
-    origin: '*',
+    origin: corsOrigins.includes('*') ? '*' : corsOrigins,
   })
 );
 app.use(express.json({ limit: '1mb' }));
