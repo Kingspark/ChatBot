@@ -28,7 +28,6 @@ const corsOptions = {
 
 // Global middleware for CORS and JSON parsing.
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 app.use(express.json({ limit: '1mb' }));
 
 // Lightweight readiness endpoint for local/dev checks.
