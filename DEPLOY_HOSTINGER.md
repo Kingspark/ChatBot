@@ -8,8 +8,8 @@ This guide prepares the current ChatBot project for deployment on Hostinger.
 - A domain or subdomain for frontend and backend.
 
 Suggested split:
-- Frontend: https://chat.your-domain.com
-- Backend API: https://api.your-domain.com
+- Frontend: https://chatgpt.antenehalemayehu.com
+- Backend API: https://royalblue-oryx-851126.hostingersite.com
 
 ## 2. Backend Deployment
 
@@ -20,6 +20,7 @@ NODE_ENV=production
 PORT=3777
 API_PREFIX=/api
 CORS_ORIGIN=https://chat.your-domain.com
+CORS_ORIGIN=https://chatgpt.antenehalemayehu.com,https://royalblue-oryx-851126.hostingersite.com
 RUN_MIGRATIONS_ON_BOOT=false
 
 MYSQL_HOST=your_hostinger_mysql_host
@@ -78,7 +79,7 @@ If using client-side routes later, add an .htaccess rewrite for SPA fallback.
 - Backend returns 200 on /health.
 - Chat can send and receive messages.
 - New rows appear in conversations table.
-- CORS only allows trusted frontend domain in production.
+- CORS allows the frontend domain and the backend Hostinger origin.
 
 ## 5. Ongoing Database Changes
 For each schema change:
