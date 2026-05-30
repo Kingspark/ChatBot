@@ -6,17 +6,29 @@ const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
-const corsOrigins = env.corsOrigin
+const corsOrigins = [
+  'https://chatgpt.antenehalemayehu.com',
+  'https://royalblue-oryx-851126.hostingersite.com',
+  ...env.corsOrigin
   .split(',')
   .map(origin => origin.trim())
-  .filter(Boolean);
+  .filter(Boolean),
+];
+
+const corsOptions = {
+  origin(origin, callback) {
+    if (!origin || corsOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`CORS origin not allowed: ${origin}`));
+  },
+  optionsSuccessStatus: 200,
+};
 
 // Global middleware for CORS and JSON parsing.
-app.use(
-  cors({
-    origin: corsOrigins.includes('*') ? '*' : corsOrigins,
-  })
-);
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json({ limit: '1mb' }));
 
 // Lightweight readiness endpoint for local/dev checks.
