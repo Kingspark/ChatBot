@@ -4,7 +4,7 @@
   "description": "ChatBot monorepo – backend entry for Hostinger Node.js deployment",
   "main": "backend/src/server.js",
   "scripts": {
-    "build": "cd backend && npm install",
+    "build": "npm install && cd backend && npm install",
     "start": "node server.js"
   },
   "dependencies": {
