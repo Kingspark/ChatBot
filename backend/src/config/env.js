@@ -1,7 +1,9 @@
 const dotenv = require('dotenv');
+const path = require('path');
 
-// Loads values from .env into process.env before creating config.
-dotenv.config();
+// Resolves .env relative to this file so it works regardless of CWD
+// (covers both local `node backend/src/server.js` and Hostinger root launch).
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const parseBoolean = (value, fallback = false) => {
   if (typeof value !== 'string') {
