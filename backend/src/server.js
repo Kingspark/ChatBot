@@ -17,7 +17,11 @@ const startServer = async () => {
       console.log('Database migrations applied on startup.');
     }
 
-    await ensureSchema();
+    try {
+      await ensureSchema();
+    } catch (schemaError) {
+      console.warn('ensureSchema warning (non-fatal):', schemaError.message);
+    }
 
     app.listen(env.port, () => {
       console.log(`Backend server listening on http://localhost:${env.port}`);
