@@ -1,0 +1,13 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "ChatBot monorepo – backend entry for Hostinger Node.js deployment",
+  "main": "backend/src/server.js",
+  "scripts": {
+    "build": "cd backend && npm install && node scripts/runMigrations.js",
+    "start": "node backend/src/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
