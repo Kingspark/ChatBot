@@ -5,7 +5,6 @@
   "main": "backend/src/server.js",
   "scripts": {
     "build": "cd backend && npm install",
-    "prestart": "cd backend && npm run migrate",
     "start": "node server.js"
   },
   "dependencies": {
