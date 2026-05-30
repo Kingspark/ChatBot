@@ -10,6 +10,7 @@ build/
 .env.*
 !.env.example
 !.env.production.example
+!frontend/.env.production
 
 # Logs
 logs/
